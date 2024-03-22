@@ -63,7 +63,7 @@ export const deleteStaff = async (req, res) => {
   }
 };
 
-
+export { getAllStaff as GET, createStaff as POST };
 
 
 

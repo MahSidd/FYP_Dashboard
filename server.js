@@ -1,6 +1,6 @@
 // server.js
 
-const app = next({})
+const next = next({})
 
 import express from 'express';
 
