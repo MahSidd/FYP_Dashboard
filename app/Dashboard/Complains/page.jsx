@@ -1,10 +1,20 @@
+"use client"
 import Search from "@/app/ui/Dashboard/Search/Search"
 import styles from "@/app/ui/Complain/complain.module.css"
 import Link from "next/link"
 import Image from "next/image";
 import Pagination from "@/app/ui/Dashboard/pagination/Pagination";
+import React, { useState, useEffect } from 'react';
 
 const Complains = () => {
+  const [ComplainList, setComplainList] = useState([]);
+
+  useEffect(() => {
+    fetch('/app/api/Complain')
+      .then((response) => response.json())
+      .then((data) => setComplainList(data));
+  }, []);
+    
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -23,7 +33,9 @@ const Complains = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
+      {ComplainList.map((Complain) => (
+
+        <tr key={Complain.Complain_No}>
           <td>
           <div className={styles.user}>
                 <Image
@@ -51,6 +63,7 @@ const Complains = () => {
                   </Link>
             </td>
         </tr>
+        ))}
       </tbody>
         
 

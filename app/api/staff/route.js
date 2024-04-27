@@ -6,36 +6,50 @@ const next = require('next')
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
+import {checkConnection } from '/lib/db'
 
 const prisma = new PrismaClient();
 
-export async function getAllStaff(){
+export const getAllStaff = async()=>{
 
   try{
-    const staffList =await prisma.staff.findMany();
-    return NextResponse.json(staffList)
+    
+    const staffList =await prisma.Staff.findMany();
+    return staffList
   }catch (error){
-    console.error("error fatching",error)
-    return NextResponse.error("internal server error ", 500)
+    console.log(error);
+    throw new  Error("Failed to fetch user!");
   }
 }
+// export async function createstaff(request){
+//   try{
+//     const data= await request.json();
+//     console.log(data);
+//     const {name, CNIC, Phone, Designation, Address, Joining_date}=data;
+//     const newStaff = await prisma.staff.create({
+//       data: {
+//         name, CNIC, Phone, Designation, Address, Joining_date }
+//     });
+//     return NextResponse.json(newStaff);
+//   } 
+//   catch(error){
+//     console.error("error fatching",error)
+//     return NextResponse.error("internal server error ", 500)
+//   }
+// }
 export async function createstaff(request){
   try{
     const data= await request.json();
     console.log(data);
-    const {name, CNIC, Phone, Designation, Address, Joining_date}=data;
-    const newStaff = await prisma.staff.create({
-      data: {
-        name, CNIC, Phone, Designation, Address, Joining_date }
-    });
+    
+    const newStaff = await prisma.staff.create({data});
     return NextResponse.json(newStaff);
   } 
   catch(error){
-    console.error("error fatching",error)
+    console.error("error creating",error)
     return NextResponse.error("internal server error ", 500)
   }
 }
-
 
 
 export {getAllStaff as GET, createstaff as POST}

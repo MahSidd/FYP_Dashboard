@@ -14,12 +14,10 @@ export async function updatestaff(request,{ params }){
     try{
       const data = await request.json();
       console.log(data);
-      const {name, CNIC, Phone, Designation, Address, Joining_date}=data;
-      const id = parseInt (params.id);
+      
+      const  Staff_id  = parseInt (params.id);
       const updatedStaff = await prisma.staff.update({
-        where:{id},
-        data:
-         {name, CNIC, Phone, Designation, Address, Joining_date}
+        where:{ Staff_id },data
       });
       return NextResponse.json(updatedStaff)
     }catch(error){
@@ -30,9 +28,9 @@ export async function updatestaff(request,{ params }){
   export async function deletestaff(request,{ params }){
     try{
       
-      const id = parseInt (params.id);
+      const  Staff_id  = parseInt (params. id );
       const updatedStaff = await prisma.staff.delete({
-        where:{id},
+        where:{ Staff_id}
        
       });
       return NextResponse.json(updatedStaff)

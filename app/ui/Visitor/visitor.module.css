@@ -7,3 +7,7 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.containerCam{
+    width: 400px;
+    height: 400px;
+}

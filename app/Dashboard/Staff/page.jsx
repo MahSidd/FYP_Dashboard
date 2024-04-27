@@ -1,9 +1,16 @@
+
 import Search from "@/app/ui/Dashboard/Search/Search"
 import styles from "@/app/ui/Staff/staff.module.css"
 import Link from "next/link"
 import Image from "next/image";
 import Pagination from "@/app/ui/Dashboard/pagination/Pagination";
-const Staff = () => {
+
+import { getAllStaff } from "@/app/api/staff/route";
+
+const Staffpage = async() => {
+  const staffList= await getAllStaff();
+  console.log(staffList);
+
     return (
       <div className={styles.container}>
         <div className={styles.top}>
@@ -19,13 +26,14 @@ const Staff = () => {
           <tr>
             <td>Name</td>
             <td>Id</td>
-            <td>Email</td>
+            {/* <td>Email</td> */}
             <td>Designation</td>
             <td>Action</td>
           </tr>
         </thead>
         <tbody>
-          <tr>
+        {staffList.map((Staff) => (
+            <tr key={Staff.Staff_id}>
             <td>
             <div className={styles.user}>
                   <Image
@@ -35,12 +43,12 @@ const Staff = () => {
                     height={40}
                     className={styles.userImage}
                   />
-                  Mahnoor Tariq
+                  {Staff.Staff_name}
               </div>
             </td>
-              <td>1001</td>
-              <td>mahnoortariq@gmail.com</td>
-              <td>Admininstrator</td>
+              <td>{Staff.Staff_id}</td>
+              {/* <td>mahnoortariq@gmail.com</td> */}
+              <td>{Staff.Staff_Designation}</td>
               <td>
                 <Link href='/Dashboard/Staff/test'>
                     <button className={`${styles.button} ${styles.view}`}>
@@ -52,8 +60,8 @@ const Staff = () => {
                     </button>
               </td>
           </tr>
+          ))}
         </tbody>
-          
 
         </table>
 
@@ -63,4 +71,4 @@ const Staff = () => {
     );
   }
   
-  export default Staff
+  export default Staffpage
