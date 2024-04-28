@@ -7,8 +7,6 @@ import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-
-
 export async function updatestaff(request,{ params }){
     
     try{

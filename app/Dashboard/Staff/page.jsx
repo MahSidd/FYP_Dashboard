@@ -1,5 +1,5 @@
 
-import Search from "@/app/ui/Dashboard/Search/Search"
+import Search from "@/app/ui/Dashboard/Search/search"
 import styles from "@/app/ui/Staff/staff.module.css"
 import Link from "next/link"
 import Image from "next/image";
@@ -7,9 +7,10 @@ import Pagination from "@/app/ui/Dashboard/pagination/Pagination";
 
 import { getAllStaff } from "@/app/api/staff/route";
 
-const Staffpage = async() => {
-  const staffList= await getAllStaff();
-  console.log(staffList);
+const Staffpage = async({searchParams}) => {
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+  const {count, Staff}= await getAllStaff(q,page);
 
     return (
       <div className={styles.container}>
@@ -25,14 +26,14 @@ const Staffpage = async() => {
         <thead>
           <tr>
             <td>Name</td>
-            <td>Id</td>
             {/* <td>Email</td> */}
             <td>Designation</td>
+            <td>joining date</td>
             <td>Action</td>
           </tr>
         </thead>
         <tbody>
-        {staffList.map((Staff) => (
+        {Staff.map((Staff) => (
             <tr key={Staff.Staff_id}>
             <td>
             <div className={styles.user}>
@@ -46,11 +47,11 @@ const Staffpage = async() => {
                   {Staff.Staff_name}
               </div>
             </td>
-              <td>{Staff.Staff_id}</td>
               {/* <td>mahnoortariq@gmail.com</td> */}
               <td>{Staff.Staff_Designation}</td>
+              <td>{Staff.createdAt?.toString().slice(4,16)}</td>
               <td>
-                <Link href='/Dashboard/Staff/test'>
+                <Link href={'/Dashboard/Staff/${Staff.Staff_id}'}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>
@@ -65,7 +66,7 @@ const Staffpage = async() => {
 
         </table>
 
-        <Pagination/>
+        <Pagination count={count}/>
 
       </div>
     );

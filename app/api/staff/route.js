@@ -6,21 +6,34 @@ const next = require('next')
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
-import {checkConnection } from '/lib/db'
+
 
 const prisma = new PrismaClient();
-
-export const getAllStaff = async()=>{
-
+export const getAllStaff = async (q,page)=>{
+  const item_per_page=2;
+ 
   try{
-    
-    const staffList =await prisma.Staff.findMany();
-    return staffList
+    const count = await  prisma.Staff.count({
+      where: {
+        Staff_name: {
+          contains: q,
+        }     
+      },})
+    const Staff = await  prisma.Staff.findMany({
+      where: {
+        Staff_name: {
+          contains: q,
+        }     
+      },
+      take: item_per_page,
+      skip: (page - 1) * item_per_page,
+    })
+    return {count,Staff}
   }catch (error){
     console.log(error);
     throw new  Error("Failed to fetch user!");
   }
-}
+};
 // export async function createstaff(request){
 //   try{
 //     const data= await request.json();
@@ -52,7 +65,7 @@ export async function createstaff(request){
 }
 
 
-export {getAllStaff as GET, createstaff as POST}
+export { createstaff as POST}
 
 
 
