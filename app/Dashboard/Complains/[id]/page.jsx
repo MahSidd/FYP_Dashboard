@@ -27,8 +27,12 @@ const SingleComplain= ()=>{
           rows="5"
           placeholder="Description"
         ></textarea>
+         <div className={styles.btn}>
+        <button>Approve</button>
+        <button id={styles.edit}>Reject</button>
+        </div>
 
-
+  
         </form>
         </div>
         </div>

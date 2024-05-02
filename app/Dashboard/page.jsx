@@ -7,7 +7,7 @@ import styles from "../ui/Dashboard/dashboard.module.css"
 import Rightbar from "../ui/Dashboard/rightbar/Rightbar"
 const Dashboard = () => {
     return (
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper }>
          <div className={styles.main}>
            <div className={styles.Card}>
              <Card1/>

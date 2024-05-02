@@ -42,7 +42,8 @@ model Complain {
   updatedAt DateTime @default(now()) @updatedAt
   User_Id Int
   User Users @relation(fields: [User_Id], references: [User_Id])
-  Desccription String 
+  Description String 
+  status String @default("pending")
 }
 
 model Users {

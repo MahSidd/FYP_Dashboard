@@ -4,24 +4,12 @@ import styles from "@/app/ui/Complain/complain.module.css"
 import Link from "next/link"
 import Image from "next/image";
 import Pagination from "@/app/ui/Dashboard/pagination/Pagination";
-import React, { useState, useEffect } from 'react';
-
 const Complains = () => {
-  const [ComplainList, setComplainList] = useState([]);
-
-  useEffect(() => {
-    fetch('/app/api/Complain')
-      .then((response) => response.json())
-      .then((data) => setComplainList(data));
-  }, []);
-    
   return (
     <div className={styles.container}>
       <div className={styles.top}>
       <Search placeholder="Search Complain Number"/>
-      
-     
-      </div>
+     </div>
       <table className={styles.table}>
       <thead>
         <tr>
@@ -33,9 +21,8 @@ const Complains = () => {
         </tr>
       </thead>
       <tbody>
-      {ComplainList.map((Complain) => (
-
-        <tr key={Complain.Complain_No}>
+     
+        <tr>
           <td>
           <div className={styles.user}>
                 <Image
@@ -63,8 +50,7 @@ const Complains = () => {
                   </Link>
             </td>
         </tr>
-        ))}
-      </tbody>
+        </tbody>
         
 
       </table>
