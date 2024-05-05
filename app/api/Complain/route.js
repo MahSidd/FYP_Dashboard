@@ -1,33 +1,35 @@
-
 const next = require('next')
-
-
-import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
-
-
 const prisma = new PrismaClient();
-export const getAllStaff = async (q,page)=>{
+
+export const  getAllCOmplain = async (q,page)=>{
   const item_per_page=2;
  
   try{
-    const count = await  prisma.Staff.count({
+    const count = await  prisma.complain.count({
       where: {
-        Staff_name: {
+        Complain: {
           contains: q,
         }     
       },})
-    const Staff = await  prisma.Staff.findMany({
+    const Complain = await  prisma.complain.findMany({
+      relationLoadStrategy: 'join', // or 'query'
+      include: {
+        User: true,
+      },
       where: {
-        Staff_name: {
-          contains: q,
-        }     
+        User: {
+          OR: [
+            { fname: { contains: q } }, // Search by first name
+            { lname: { contains: q } },
+            
+          ],
+        },
       },
       take: item_per_page,
       skip: (page - 1) * item_per_page,
     })
-    return {count,Staff}
+    return {count,Complain}
   }catch (error){
     console.log(error);
     throw new  Error("Failed to fetch user!");
@@ -39,13 +41,13 @@ export const getAllStaff = async (q,page)=>{
 // const next = require('next')
 
 
-// import { NextApiRequest, NextApiResponse } from 'next';
+
 // import { PrismaClient } from '@prisma/client';
 // import { NextResponse } from 'next/server';
 
 // const prisma = new PrismaClient();
 
-// export async function getAllCOmplain(){
+// export const  getAllCOmplain = async ()=>{
 
 //   try{
 //     const ComplainList =await prisma.Complain.findMany();
@@ -55,4 +57,4 @@ export const getAllStaff = async (q,page)=>{
 //     return NextResponse.error("internal server error ", 500)
 //   }
 // }
-// export {getAllCOmplain as GET};
+//  export {getAllCOmplain as GET};

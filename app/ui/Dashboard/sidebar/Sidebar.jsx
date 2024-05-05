@@ -72,7 +72,7 @@ const menuItems =[
       },
       {
         title: "Logout",
-        path: "/Login",
+        path: "/",
         icon: <MdLogout/>
        }
     ]

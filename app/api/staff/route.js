@@ -2,8 +2,6 @@
 
 const next = require('next')
 
-
-import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
@@ -34,14 +32,62 @@ export const getAllStaff = async (q,page)=>{
     throw new  Error("Failed to fetch user!");
   }
 };
+
 // export async function createstaff(request){
 //   try{
 //     const data= await request.json();
 //     console.log(data);
-//     const {name, CNIC, Phone, Designation, Address, Joining_date}=data;
+    
+//     const newStaff = await prisma.staff.create({data});
+//     return NextResponse.json(newStaff);
+//   } 
+//   catch(error){
+//     console.error("error creating",error)
+//     return NextResponse.error("internal server error ", 500)
+//   }
+// }
+
+
+// export { createstaff as POST}
+
+
+
+
+// export const addUser = async (formData) => {
+//   "use server"
+//   const { Staff_name, Staff_CNIC,Staff_Phone,Staff_Designation,Staff_Address, Joining_date} =
+//     Object.fromEntries(formData);
+
+//   try {
+   
+
+//     const newStaff = new prisma.Staff({
+//       Staff_name, 
+//       Staff_CNIC,
+//       Staff_Phone,
+//       Staff_Designation,
+//       Staff_Address,
+//        Joining_date,
+//     });
+
+//     await newStaff.create();
+//   } catch (err) {
+//     console.log(err);
+//     throw new Error("Failed to create user!");
+//   }}
+
+
+
+
+  
+// export async function createstaff(request){
+//   try{
+//     const data= await request.json();
+//     console.log(data);
+//     const { Staff_name, Staff_CNIC,Staff_Phone,Staff_Designation,Staff_Address, Joining_date}=data;
 //     const newStaff = await prisma.staff.create({
 //       data: {
-//         name, CNIC, Phone, Designation, Address, Joining_date }
+//         Staff_name, Staff_CNIC,Staff_Phone,Staff_Designation,Staff_Address, Joining_date}
 //     });
 //     return NextResponse.json(newStaff);
 //   } 
@@ -50,22 +96,24 @@ export const getAllStaff = async (q,page)=>{
 //     return NextResponse.error("internal server error ", 500)
 //   }
 // }
-export async function createstaff(request){
-  try{
-    const data= await request.json();
-    console.log(data);
+// export { createstaff as POST}
+// export async function createstaff(request){
+//   try{
+//     const data= await request.json();
+//     console.log(data);
     
-    const newStaff = await prisma.staff.create({data});
-    return NextResponse.json(newStaff);
-  } 
-  catch(error){
-    console.error("error creating",error)
-    return NextResponse.error("internal server error ", 500)
-  }
-}
+//     const newStaff = await prisma.staff.create({data});
+//     return NextResponse.json(newStaff);
+//   } 
+//   catch(error){
+//     console.error("error creating",error)
+//     return NextResponse.error("internal server error ", 500)
+//   }
+// }
 
 
-export { createstaff as POST}
+
+
 
 
 
