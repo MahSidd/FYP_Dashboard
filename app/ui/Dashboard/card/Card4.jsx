@@ -5,9 +5,9 @@ import Image from "next/image"
 const Card3 =()=>{
     return(
         <div className={styles.container}>
-            <Image src='/fire ic.png' alt="Fire" width="20" height="20"/>
+            <Image src='/ic main.png' alt="complain" width="20" height="20"/>
             <div className={styles.texts}>
-                <span className={styles.title}>Fire Alert</span>
+                <span className={styles.title}>Complains</span>
                 <span className={styles.number}>10</span>
                 <span className={styles.details}>
                     <span className={styles.negative}>5%</span>

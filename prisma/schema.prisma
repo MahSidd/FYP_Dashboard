@@ -59,11 +59,12 @@ model Users {
   updatedAt DateTime@default(now()) @updatedAt
   Complain Complain[]
   Event Event[]
-  Visito Visitor[]
+  Visitor Visitor[]
 
 }
 model Event{
   Event_Id Int @id@default(autoincrement())
+  Name String 
   Address String
   Description String
   Date String
@@ -72,6 +73,7 @@ model Event{
   User Users @relation(fields: [User_Id], references: [User_Id])
   createdAt DateTime @default(now())
   updatedAt DateTime@default(now()) @updatedAt
+   Status String @default("pending")
 
 }
 

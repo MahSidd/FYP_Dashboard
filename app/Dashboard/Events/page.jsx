@@ -3,9 +3,13 @@ import styles from "@/app/ui/Event/event.module.css"
 import Link from "next/link"
 import Image from "next/image";
 import Pagination from "@/app/ui/Dashboard/pagination/Pagination";
+import {getAllEvent} from "@/app/api/Event/get"
 
 
-const Events = () => {
+const Events = async ({searchParams}) => {
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+  const {count, event}= await getAllEvent(q,page);
     return (
         <div className={styles.container}>
           <div className={styles.top}>
@@ -24,40 +28,35 @@ const Events = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
+          {event.map((event) => (
+            <tr key={event.Event_Id}>
               <td>
               <div className={styles.user}>
-                    <Image
-                      src="/noavatar.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                      className={styles.userImage}
-                    />
-                    Mahnoor Tariq
+                    
+              { `${event.User.fname} ${event.User.lname}`}
                 </div>
               </td>
-                <td>Birthday</td>
+                <td>{event.Name}</td>
                 <td>
                 <span className={`${styles.status} ${styles.pending}`}>
-                    Booked
+                    {event.Status}
                   </span>
                 </td>
-                <td>1-feb-2024</td>
+                <td>{event.Date}</td>
                 <td>
-                <Link href="/Dashboard/Events/test">
+                <Link href={`/Dashboard/Events/${event.Event_Id}`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>
                   </Link>
                 </td>
             </tr>
+          ))}
           </tbody>
-            
     
           </table>
     
-          <Pagination/>
+          <Pagination Pagination count={count}/>
     
         </div>
       );

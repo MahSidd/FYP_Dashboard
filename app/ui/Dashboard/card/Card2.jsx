@@ -1,10 +1,11 @@
 import { MdSupervisedUserCircle } from "react-icons/md";
 import styles from './Card.module.css'
+import Image from "next/image"
 
 const Card2 =()=>{
     return(
         <div className={styles.container}>
-            <MdSupervisedUserCircle size={24} />
+            <Image src='/Vector.png' alt="Event" width="20" height="20"/>
             <div className={styles.texts}>
                 <span className={styles.title}>Total Events</span>
                 <span className={styles.number}>10</span>

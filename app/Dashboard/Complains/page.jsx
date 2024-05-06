@@ -34,13 +34,7 @@ const Complains = async({searchParams}) => {
         <tr key={Complain.Complain_No}>
           <td>
           <div className={styles.user}>
-                <Image
-                  src="/noavatar.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className={styles.userImage}
-                />
+                
                 
                { `${Complain.User.fname} ${Complain.User.lname}`}
                

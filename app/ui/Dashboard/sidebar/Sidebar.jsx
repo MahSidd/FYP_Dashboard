@@ -20,28 +20,34 @@ const menuItems =[
       {
         title: "Dashboard",
         path: "/Dashboard",
-        icon: <MdDashboard/>
+        icon: <MdDashboard  width="20" height="20"/>
       },
       {
         title: "Staff",
         path: "/Dashboard/Staff",
-        icon: <MdSupervisedUserCircle/>
+        icon: <MdSupervisedUserCircle width="20" height="20"/>
       },
       {
-        title: "Complains",
+        title: "Maintainance",
         path: "/Dashboard/Complains",
-        icon: <MdErrorOutline/>
+        icon:<Image src='/ic main.png' alt="complain" width="20" height="20"/>
       },
       {
-        title: "Events",
+        title: "Event Management",
         path: "/Dashboard/Events",
-        icon: <MdErrorOutline/>
+        icon:<Image src='/Vector.png' alt="Event" width="20" height="20"/>
       },
       {
-      title: "Visitor",
+      title: "Visitor Accesss",
       path: "/Dashboard/Visitor",
-      icon: <MdSupervisedUserCircle/>
+      icon: <Image src='/Group.png' alt="Visitor" width="20" height="20"/>
     },
+    {
+      title: "Fire Alert",
+      path: "/Dashboard/Visitor",
+      icon: <Image src='/fire ic.png' alt="Fire" width="20" height="20"/>
+    },
+
     ],
   },
   { title: "Analytics",

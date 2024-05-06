@@ -1,6 +1,6 @@
 .container{
     display:flex;
-   
+    
 }
 .menu{
     flex: 1;
@@ -30,12 +30,20 @@
   }
   
 .Card{
-    display: flex;
+    /* display: flex;
+    flex: 2;
+    flex-direction: column;*/
+    justify-content: space-between; 
     gap: 20px;
-    justify-content: space-between;
+    display: grid;
+    grid-auto-flow: column;
+grid-gap: 20px;
+grid-template-rows: 150px 150px;
+grid-template-columns: 48% 48%;
 }
 .right{
     flex: 1;
+    
 }
 
 
