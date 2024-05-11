@@ -42,13 +42,13 @@ const Complains = async({searchParams}) => {
           </td>
             <td>{Complain.Complain}</td>
             <td>
-            <span className={`${styles.status} ${styles.pending}`}>
+            <span className={`${styles.status} ${styles.pending} `}>
                 {Complain.status}
               </span>
             </td>
             <td>{Complain.createdAt?.toString().slice(4,16)}</td>
             <td>
-            <Link href='/Dashboard/Complains/${Complain.Complain_No}'>
+            <Link href={`/Dashboard/Complains/${Complain.Complain_No}`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>

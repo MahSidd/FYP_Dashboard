@@ -21,22 +21,29 @@ const AddStaff= ()=>{
   };
 
   const handleCreate = async () => {
-    const response = await fetch("/api/staff/createstaff", {
+    if (!staff.Staff_name || !staff.Staff_Phone || !staff.Staff_CNIC || !staff.Staff_Address || !staff.Joining_date) {
+      alert(" All feild required to filled")
+    }else{
+    const response = await fetch("http://localhost:3000/api/staff", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(staff),
+      
     });
 
     if (response.ok) {
       // staff created successfully
-      router.push("/");
+      alert("staff has been inserted");
+      
+
     } else {
       // Handle error
       alert("Failed to create staff");
     }
-  };
+    location.reload();
+  }};
 
   return (
     <div className={styles.Messages}>
@@ -52,7 +59,7 @@ const AddStaff= ()=>{
           onChange={onChange}
        
         />
-        <input type="texr" placeholder="Joining date" name="Joining_date" value={staff?.Joining_date} onChange={onChange} />
+        <input type="text" placeholder="Joining date" name="Joining_date" value={staff?.Joining_date} onChange={onChange} />
         <textarea
           name="Staff_Address"
           rows="5"

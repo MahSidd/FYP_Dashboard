@@ -4,7 +4,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: var(--bg);
+    /* background-image: var(--bg); */
+    background-color: rgba(255, 151, 132, 0.89);
+    
     
     
   
