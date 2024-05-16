@@ -15,8 +15,8 @@ export const  getAllCOmplain = async (q,page)=>{
     const Complain = await  prisma.complain.findMany({
       relationLoadStrategy: 'join', // or 'query'
       include: {
-        User: true,
-      },
+      User: true,
+    },
       where: {
         User: {
           OR: [
@@ -37,24 +37,3 @@ export const  getAllCOmplain = async (q,page)=>{
 };
 
 
-
-// const next = require('next')
-
-
-
-// import { PrismaClient } from '@prisma/client';
-// import { NextResponse } from 'next/server';
-
-// const prisma = new PrismaClient();
-
-// export const  getAllCOmplain = async ()=>{
-
-//   try{
-//     const ComplainList =await prisma.Complain.findMany();
-//     return NextResponse.json(ComplainList)
-//   }catch (error){
-//     console.error("error fatching",error)
-//     return NextResponse.error("internal server error ", 500)
-//   }
-// }
-//  export {getAllCOmplain as GET};

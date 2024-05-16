@@ -7,12 +7,11 @@ import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export async function updatestaff(request,{ params }){
+export async function PUT(request,{ params }){
     
     try{
       const data = await request.json();
       console.log(data);
-      
       const  Staff_id  = parseInt (params.id);
       const updatedStaff = await prisma.staff.update({
         where:{ Staff_id },data
@@ -23,7 +22,28 @@ export async function updatestaff(request,{ params }){
       return NextResponse.error("internal server error ", 500)
     }
   }
-  export async function deletestaff(request,{ params }){
+
+  export async function GET(request, { params }) {
+    try {
+      const { id } = params; 
+      const Staff_id = parseInt(id); 
+  
+      const getStaffById = await prisma.staff.findFirst({
+        where: {
+          Staff_id: Staff_id, // Use the correct field name from your database table
+        },
+      });
+  
+      console.log(getStaffById); // Check if data is fetched correctly
+  
+      return NextResponse.json(getStaffById);
+    } catch (error) {
+      console.log("Error fetching staff by id:", error);
+      return NextResponse.error("Internal server error", 500);
+    }
+  }
+
+  export async function DELETE(request,{ params }){
     try{
       
       const  Staff_id  = parseInt (params. id );
@@ -37,4 +57,3 @@ export async function updatestaff(request,{ params }){
       return NextResponse.error("internal server error ", 500)
     }
   }
-  export {updatestaff as PUT, deletestaff as DELETE }
