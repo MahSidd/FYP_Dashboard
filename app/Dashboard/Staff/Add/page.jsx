@@ -2,10 +2,24 @@
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Button from '@mui/material/Button';
 
 import styles from "@/app/ui/Staff/Add/add.module.css"
+import Alert  from "@/app/ui/alert/alert";
 
 const AddStaff= ()=>{ 
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertType, setAlertType] = useState('info');
+  const showAlert = (message, type) => {
+
+    setAlertMessage(message);
+    setAlertType(type);
+    setAlertVisible(true);
+    setTimeout(() => {
+      setAlertVisible(false);
+    }, 3000); // Hide alert after 3 seconds
+  };
   const router = useRouter();
   const [staff, setstaff] = useState({
     Staff_name: '',
@@ -22,7 +36,7 @@ const AddStaff= ()=>{
 
   const handleCreate = async () => {
     if (!staff.Staff_name || !staff.Staff_Phone || !staff.Staff_CNIC || !staff.Staff_Address || !staff.Joining_date) {
-      alert(" All feild required to filled")
+      showAlert('All fild required to fill', 'warning');
     }else{
     const response = await fetch("http://localhost:3000/api/staff", {
       method: "POST",
@@ -35,14 +49,17 @@ const AddStaff= ()=>{
 
     if (response.ok) {
       // staff created successfully
-      alert("staff has been inserted");
+      showAlert('Data Insert successfully!', 'success');
+      setTimeout(() => {
+        
+        location.reload();
+      }, 3000);
       
 
     } else {
       // Handle error
-      alert("Failed to create staff");
+      showAlert('failed to create staff!', 'error');
     }
-    location.reload();
   }};
 
   return (
@@ -67,8 +84,17 @@ const AddStaff= ()=>{
           value={staff?.Staff_Address}
           onChange={onChange}
         ></textarea>
-        <button type="button" onClick={handleCreate}>Submit</button>
+        <Button type="button" variant="contained"onClick={handleCreate}>Submit
+        </Button>
+       
       </form>
+      {alertVisible && (
+          <Alert
+          message={alertMessage}
+          type={alertType}
+          onClose={() => setAlertVisible(false)}
+          />
+        )}
     </div>
   );
 };
