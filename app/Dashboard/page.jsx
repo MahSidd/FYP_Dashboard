@@ -6,6 +6,8 @@ import Chart from "../ui/Dashboard/chart/Chart"
 import Complain from "../ui/Dashboard/compSec/ComplainSec"
 import styles from "../ui/Dashboard/dashboard.module.css"
 import Rightbar from "../ui/Dashboard/rightbar/Rightbar"
+
+
 const Dashboard = () => {
     return (
       <div className={styles.wrapper }>
@@ -28,4 +30,4 @@ const Dashboard = () => {
     )
   }
   
-  export default Dashboard
+export default Dashboard

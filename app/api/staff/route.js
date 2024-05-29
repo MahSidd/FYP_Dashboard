@@ -51,7 +51,23 @@ export async function POST(request){
 }
 
 
+export async function GET() {
+  try {
+   
 
+    const staff = await prisma.staff.findMany({
+    
+      
+    });
+
+    console.log(staff); // Check if data is fetched correctly
+
+    return NextResponse.json(staff);
+  } catch (error) {
+    console.log("Error fetching staff by id:", error);
+    return NextResponse.error("Internal server error", 500);
+  }
+}
 
 
 

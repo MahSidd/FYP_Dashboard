@@ -7,7 +7,7 @@ CREATE TABLE `Staff` (
     `Staff_Designation` VARCHAR(191) NOT NULL,
     `Staff_Address` VARCHAR(191) NOT NULL,
     `Joining_date` VARCHAR(191) NOT NULL,
-    `updatedAt` DATETIME(3) NOT NULL,
+    `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     UNIQUE INDEX `Staff_Staff_CNIC_key`(`Staff_CNIC`),
@@ -23,7 +23,7 @@ CREATE TABLE `Visitor` (
     `Vehicle_Plate` VARCHAR(191) NOT NULL,
     `User_Id` INTEGER NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
+    `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`Guest_No`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -33,9 +33,10 @@ CREATE TABLE `Complain` (
     `Complain_No` INTEGER NOT NULL AUTO_INCREMENT,
     `Complain` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
+    `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `User_Id` INTEGER NOT NULL,
-    `Desccription` VARCHAR(191) NOT NULL,
+    `Description` VARCHAR(191) NOT NULL,
+    `status` VARCHAR(191) NOT NULL DEFAULT 'pending',
 
     PRIMARY KEY (`Complain_No`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -49,6 +50,8 @@ CREATE TABLE `Users` (
     `lname` VARCHAR(191) NOT NULL,
     `CNIC` VARCHAR(191) NOT NULL DEFAULT '',
     `password` VARCHAR(191) NOT NULL DEFAULT '',
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     UNIQUE INDEX `Users_Email_key`(`Email`),
     UNIQUE INDEX `Users_Phone_key`(`Phone`),
@@ -58,15 +61,41 @@ CREATE TABLE `Users` (
 -- CreateTable
 CREATE TABLE `Event` (
     `Event_Id` INTEGER NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(191) NOT NULL,
     `Address` VARCHAR(191) NOT NULL,
     `Description` VARCHAR(191) NOT NULL,
-    `Date` VARCHAR(191) NOT NULL,
-    `Time` VARCHAR(191) NOT NULL,
+    `Date` DATETIME(3) NOT NULL,
+    `Time` DATETIME(3) NOT NULL,
     `User_Id` INTEGER NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
+    `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `Status` VARCHAR(191) NOT NULL DEFAULT 'pending',
 
     PRIMARY KEY (`Event_Id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `auth` (
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
+    `email` VARCHAR(191) NOT NULL,
+    `password` VARCHAR(191) NOT NULL,
+    `phone_no` VARCHAR(191) NOT NULL,
+    `role` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    PRIMARY KEY (`Id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `News` (
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
+    `Title` VARCHAR(191) NOT NULL,
+    `Type` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/app/ui/Dashboard/pagination/Pagination";
 
-import { getAllCOmplain } from "@/app/api/Complain/route";
+import { getAllCOmplain } from "@/app/Dashboard/api/Complain/route";
 
 const Complains = async ({ searchParams }) => {
   const q = searchParams?.q || "";

@@ -3,7 +3,7 @@ import styles from "@/app/ui/Event/event.module.css"
 import Link from "next/link"
 import Image from "next/image";
 import Pagination from "@/app/ui/Dashboard/pagination/Pagination";
-import {getAllEvent} from "@/app/api/Event/get"
+import {getAllEvent} from "@/app/Dashboard/api/Event/get"
 
 
 const Events = async ({searchParams}) => {

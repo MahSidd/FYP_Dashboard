@@ -67,8 +67,8 @@ model Event{
   Name String 
   Address String
   Description String
-  Date String
-  Time String
+  Date DateTime
+  Time DateTime
   User_Id Int
   User Users @relation(fields: [User_Id], references: [User_Id])
   createdAt DateTime @default(now())
@@ -76,6 +76,25 @@ model Event{
    Status String @default("pending")
 
 }
+model auth{
+  Id Int @id@default(autoincrement())
+  email String
+  password String
+  phone_no String
+  role String
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime@default(now()) @updatedAt
+}
+model News{
+  Id Int @id@default(autoincrement())
+  Title String
+  Type String
+  createdAt DateTime @default(now())
+  updatedAt DateTime@default(now()) @updatedAt
+
+}
+
 
 
 
