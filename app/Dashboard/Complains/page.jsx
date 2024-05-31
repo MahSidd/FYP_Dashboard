@@ -1,10 +1,10 @@
-import Search from "@/app/ui/Dashboard/Search/Search";
+import Search from "@/app/ui/Dashboard/Search/search";
 import styles from "@/app/ui/Complain/complain.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/app/ui/Dashboard/pagination/Pagination";
 
-import { getAllCOmplain } from "@/app/Dashboard/api/Complain/route";
+import { getAllCOmplain } from "@/app/api/Complain/route";
 
 const Complains = async ({ searchParams }) => {
   const q = searchParams?.q || "";

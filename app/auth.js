@@ -1,11 +1,12 @@
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { authConfig } from "./authconfig";
 import { PrismaClient } from '@prisma/client';
 import bcrypt from "bcrypt"
+
 const prisma = new PrismaClient();
 
-const Login =async (credentials)=>{
+const Login = async (credentials)=>{
     try{
         const user = await prisma.auth.findUnique({
             where:{
@@ -24,7 +25,7 @@ const Login =async (credentials)=>{
         throw new Error("failed to Logged in ")
     }
 
-}
+};
 export const {signIn,signOut,auth} =NextAuth ({
     ...authConfig,
     providers:[

@@ -1,4 +1,4 @@
-import Navbar from "../ui/Dashboard/Navbar/Navbar"
+import Navbar from "../ui/Dashboard/navbar/Navbar"
 import Sidebar from "../ui/Dashboard/Sidebar/Sidebar"
 import styles from "../ui/Dashboard/dashboard.module.css"
 import Footer from "../ui/Dashboard/footer/Footer"

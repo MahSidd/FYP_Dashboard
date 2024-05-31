@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image";
 import Pagination from "@/app/ui/Dashboard/pagination/Pagination";
 
-import { getAllStaff } from "@/app/Dashboard/api/staff/route";
+import { getAllStaff } from "@/app/api/staff/route";
 
 const Staffpage = async({searchParams}) => {
   const q = searchParams?.q || "";

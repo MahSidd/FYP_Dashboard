@@ -5,15 +5,17 @@
     align-items: center;
     justify-content: center;
     /* background-image: var(--bg); */
-    background-color: rgba(255, 151, 132, 0.89);
+    /* background-color: rgba(255, 151, 132, 0.89); */
+    background-image: url("/643353.png");
+    background-size: cover;
     
-    
-    
-  
+
 }
 
+  
+
 .form{
-    background: rgba(255, 254, 254, 0.171);
+    background: rgba(255, 254, 254, 0.747);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10);
