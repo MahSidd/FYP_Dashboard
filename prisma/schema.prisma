@@ -39,6 +39,8 @@ model Visitor{
 model Complain {
   Complain_No Int @id @default(autoincrement())
   Complain String
+  Address String
+  Phone Int
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
   User_Id Int
