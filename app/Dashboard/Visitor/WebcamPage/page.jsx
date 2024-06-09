@@ -1,54 +1,57 @@
 "use client"
-// import React, { useRef} from 'react'
-// import Link from "next/link"
-// import Webcam from "react-webcam";
 
-
-
-// const WebcamPage = () => {
-//     const webcamRef= useRef<Webcam>(null);
-//     return(
-//         <div>
-//             <Webcam/>
-//         </div>
-//     )
-
-// }
-// export default WebcamPage
-//scan.js
-
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
 import styles from "@/app/ui/Visitor/visitor.module.css";
 
 const WebcamPage = () => {
   const [data, setData] = useState("No result");
+  const [isActive, setIsActive] = useState(true);
+
+  const handleResult = async (result, error) => {
+    if (result) {
+      const scannedData = result.text;
+      setData(scannedData);
+
+      try {
+        const response = await fetch('/api/Visitor', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ qrCodeValue: scannedData }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Success:', data);
+          // Optionally, you can clear the data state or handle other logic here
+        } else {
+          console.error('Failed to delete record');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+    if (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className={styles.containerCam}>
-      <div className={styles.containerCam}>
+      {isActive && (
         <QrReader
-          onResult={(result, error) => {
-            if (!!result) {
-              setData(result?.text);
-            }
-
-            if (!!error) {
-              console.info(error);
-            }
-
-          } 
-        }
-//this is facing mode : "environment " it will open backcamera of the smartphone and if not found will 
-// open the front camera
-        constraints    ={{ facingMode:  "environment"  }}
-          style={{ width: "40%", height: "40%" }}
+          onResult={handleResult}
+          constraints={{ facingMode: "environment" }}
+          style={{ width: "100%", height: "100%" }}
         />
-        <p>{data}</p>
-      </div>
+      )}
+      <p>{data}</p>
+      <button onClick={() => setIsActive(false)}>Close</button>
     </div>
   );
 }
 
 export default WebcamPage;
-

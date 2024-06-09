@@ -16,6 +16,7 @@ const SingleComplain= ({params})=>{
     User_Id: '',
     Description: '',
     status: '',
+    Address:'',
     User: {
         User_Id: '',
         Email: '',
@@ -76,17 +77,19 @@ const SingleComplain= ({params})=>{
         <input type="text"  value={complain.User.CNIC} />
        
         <label>Phone</label>
-        <input type="text" value={complain.User.Phone} />
+        <input type="text" value={complain.Phone} />
         <label>Complain Type</label>
         <input type="text" value={complain.Complain} />
+        <label> Address </label>
+        <input type="text" value={complain.Address} />
      
         <label>Description</label>
         <textarea
           type="text"  value={complain.Description}  ></textarea>
          <div className={styles.btn}>
         <button type="button"
-             onClick={()=> handleUpdate ('approve')}>approve</button>
-        <button id={styles.edit}  onClick={()=> handleUpdate ('reject')}>Reject</button>
+             onClick={()=> handleUpdate ('Approved')}>Approved</button>
+        <button id={styles.edit}  onClick={()=> handleUpdate ('Rejected')}>Reject</button>
         </div>
 
   

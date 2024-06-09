@@ -46,7 +46,7 @@ const menuItems =[
     },
     {
       title: "Fire Alert",
-      path: "/Dashboard/Visitor",
+      path: "/",
       icon: <Image src='/fire ic.png' alt="Fire" width="20" height="20"/>
     },
 
@@ -80,7 +80,7 @@ const menuItems =[
       },
       {
         title: "Logout",
-        path: "/",
+        path: "/Login",
         icon: <MdLogout/>
        }
     ]

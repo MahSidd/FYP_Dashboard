@@ -11,7 +11,7 @@ export async function PUT(request,{ params }){
     
     try{
       const  action = await request.json();
-      const status = action ==='approve' ? 'approved':'rejected';
+      const status = action ==='Approved' ? 'Approved':'Rejected';
       const  Complain_No  = parseInt (params.id);
       const updatedComplain = await prisma.complain.update({
         relationLoadStrategy: 'join', // or 'query'

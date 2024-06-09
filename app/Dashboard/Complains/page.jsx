@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/app/ui/Dashboard/pagination/Pagination";
 
-import { getAllCOmplain } from "@/app/Dashboard/api/Complain/route";
+import { getAllCOmplain } from "@/app/api/Complain/route";
 
 const Complains = async ({ searchParams }) => {
   const q = searchParams?.q || "";
@@ -16,7 +16,7 @@ const Complains = async ({ searchParams }) => {
       <div className={styles.top}>
         <Search placeholder="Search Complain Number" />
       </div>
-      <table className={styles.table}>
+      <table className={styles.table} >
         <thead>
           <tr>
             <td>Name</td>
@@ -42,12 +42,12 @@ const Complains = async ({ searchParams }) => {
                     {Complain.status}
                   </span>
                 )}
-                {Complain.status === "approved" && (
+                {Complain.status === "Approved" && (
                   <span className={`${styles.status} ${styles.done}`}>
                     {Complain.status}
                   </span>
                 )}
-                {Complain.status === "rejected" && (
+                {Complain.status === "Rejected" && (
                   <span className={`${styles.status} ${styles.cancelled}`}>
                     {Complain.status}
                   </span>
