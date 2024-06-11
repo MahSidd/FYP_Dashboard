@@ -44,18 +44,22 @@ import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export async function DELETE(request,{ qrCodeValue }){
-  try{
-    
-    const  Guest_Noqr  = parseInt (qrCodeValue );
-    console.log(Guest_Noqr)
-    const deleteVisitor = await prisma.Visitor.delete({
-      where:{ Guest_No: Guest_Noqr}
-     
+
+
+export async function DELETE(request) {
+  try {
+    const body = await request.json();
+    const { qrCodeValue } = body;
+    console.log(qrCodeValue)
+
+    // Assuming qrCodeValue corresponds to a field in your staff table, e.g., Staff_id
+    const updatedStaff = await prisma.visitor.delete({
+      where: { Guest_No: parseInt(qrCodeValue) },
     });
-    return NextResponse.json(deleteVisitor)
-  }catch(error){
-    console.log("error deleting ", error)
-    return NextResponse.error("internal server error ", 500)
+
+    return NextResponse.json(updatedStaff);
+  } catch (error) {
+    console.log("Error deleting: ", error);
+    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 }

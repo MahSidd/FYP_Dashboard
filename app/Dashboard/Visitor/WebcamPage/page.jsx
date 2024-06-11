@@ -1,15 +1,17 @@
-"use client"
+"use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { QrReader } from "react-qr-reader";
 import styles from "@/app/ui/Visitor/visitor.module.css";
 
 const WebcamPage = () => {
   const [data, setData] = useState("No result");
   const [isActive, setIsActive] = useState(true);
+  const scanningRef = useRef(false); // Ref to prevent multiple scans at once
 
   const handleResult = async (result, error) => {
-    if (result) {
+    if (result && !scanningRef.current) {
+      scanningRef.current = true;
       const scannedData = result.text;
       setData(scannedData);
 
@@ -32,6 +34,11 @@ const WebcamPage = () => {
       } catch (error) {
         console.error('Error:', error);
       }
+
+      // Delay before allowing another scan
+      setTimeout(() => {
+        scanningRef.current = false;
+      }, 3000); // Adjust delay duration as needed (in milliseconds)
     }
 
     if (error) {

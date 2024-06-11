@@ -65,7 +65,7 @@ const Card3 = () => {
   const currentMonthCount = currentMonthComplains.length;
   const previousMonthCount = previousMonthComplains.length;
   const percentageChange =
-    previousMonthCount === 0 ? 0 : (((currentMonthCount - previousMonthCount) / previousMonthCount) * 100)-100;
+    previousMonthCount === 0 ? 0 : (((currentMonthCount - previousMonthCount) / previousMonthCount) * 100);
 
   return (
     <div className={styles.container}>
