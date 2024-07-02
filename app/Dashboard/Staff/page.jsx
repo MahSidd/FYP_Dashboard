@@ -49,7 +49,7 @@ const Staffpage = async({searchParams}) => {
             </td>
               {/* <td>mahnoortariq@gmail.com</td> */}
               <td>{Staff.Staff_Designation}</td>
-              <td>{Staff.createdAt?.toString().slice(4,16)}</td>
+              <td>{Staff.Joining_date?.toString().slice(4,16)}</td>
               <td>
                 <Link href={`/Dashboard/Staff/${Staff.Staff_id}`}>
                     <button className={`${styles.button} ${styles.view}`}>

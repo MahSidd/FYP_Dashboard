@@ -9,15 +9,14 @@ import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 export const getAllStaff = async (q,page)=>{
   const item_per_page=2;
- 
   try{
-    const count = await  prisma.Staff.count({
+    const count = await prisma.staff.count({
       where: {
         Staff_name: {
           contains: q,
         }     
       },})
-    const Staff = await  prisma.Staff.findMany({
+    const Staff = await prisma.staff.findMany({
       where: {
         Staff_name: {
           contains: q,
