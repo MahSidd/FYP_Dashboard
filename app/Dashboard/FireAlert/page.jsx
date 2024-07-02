@@ -1,7 +1,7 @@
 const FireAlert =()=>{
     return(
         <div>
-            <h1> Firealert</h1>
+            <h1> Firealert Data</h1>
         </div>
     )
 }
