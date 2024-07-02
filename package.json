@@ -16,6 +16,8 @@
     "@mui/x-data-grid-premium": "^7.5.0",
     "@next/eslint-plugin-next": "14.0.1",
     "@prisma/client": "^5.13.0",
+    "@syncfusion/ej2-react-base": "^26.1.35",
+    "@syncfusion/ej2-react-schedule": "^26.1.39",
     "bcrypt": "^5.1.1",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",

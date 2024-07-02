@@ -46,7 +46,7 @@ const menuItems =[
     },
     {
       title: "Fire Alert",
-      path: "/",
+      path: "/Dashboard/FireAlert",
       icon: <Image src='/fire ic.png' alt="Fire" width="20" height="20"/>
     },
 

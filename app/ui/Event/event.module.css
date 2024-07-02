@@ -1,3 +1,6 @@
+/* 
+
+
 .container{
     background-color: var(--bgSoft);
     padding: 20px;
@@ -62,4 +65,22 @@
   
   .cancelled{
     background-color: #f7737375;
-  }
+  } */
+
+  @import "@syncfusion/ej2-calendars/styles/material.css";
+  @import "@syncfusion/ej2-base/styles/material.css";
+/* @import "@syncfusion/ej2-buttons/styles/material.css";
+
+@import "@syncfusion/ej2-dropdowns/styles/material.css";
+@import "@syncfusion/ej2-inputs/styles/material.css";
+@import "@syncfusion/ej2-lists/styles/material.css";
+@import "@syncfusion/ej2-navigations/styles/material.css";
+@import "@syncfusion/ej2-popups/styles/material.css";
+@import "@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "@syncfusion/ej2-react-schedule/styles/material.css"; */
+
+#container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  display: block;
+}
