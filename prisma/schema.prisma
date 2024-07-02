@@ -22,7 +22,7 @@ model Staff {
   Staff_Phone  String            @unique
   Staff_Designation String
   Staff_Address String
-  Joining_date String   
+  Joining_date DateTime    
   updatedAt DateTime  @default(now()) @updatedAt
   createdAt DateTime @default(now())
 }

@@ -76,7 +76,7 @@ const AddStaff= ()=>{
           onChange={onChange}
        
         />
-        <input type="text" placeholder="Joining date" name="Joining_date" value={staff?.Joining_date} onChange={onChange} />
+        <input type="date" placeholder="Joining date" name="Joining_date" value={staff?.Joining_date} onChange={onChange} />
         <textarea
           name="Staff_Address"
           rows="5"
